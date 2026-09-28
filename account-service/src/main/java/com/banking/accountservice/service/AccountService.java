@@ -115,9 +115,8 @@ public class AccountService {
     }
 
     /**
-     * \Credit balance
+     * Credit balance
      * Called by Transaction Service via kafka
-     * 
      * @param accountNumber
      * @param amount
      */
@@ -126,6 +125,10 @@ public class AccountService {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
+        account.setBalance(account.getBalance());
+        accountRepository.save(account);
+
+        log.info("Balance Credited. New Balance: {}", account.getBalance());
     }
 
     // Genereate unique 12 digit account number
