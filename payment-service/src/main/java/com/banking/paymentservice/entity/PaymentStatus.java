@@ -1,5 +1,7 @@
 package com.banking.paymentservice.entity;
 
-public class PaymentStatus {
-
+public enum PaymentStatus {
+    CREATED,
+    COMPLETED,
+    FAILED
 }
